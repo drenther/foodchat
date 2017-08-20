@@ -7,8 +7,7 @@ const request = require('request');
 module.exports = (req, res) => {
 	if (req.body.result.action === 'cuisine') {
 		const cuisine = req.body.result.parameters['cuisine'];
-		const start = ((min, max) => Math.floor(Math.random() * (max - min + 1)) + min )(0, 5);
-		const apiUrl = `https://developers.zomato.com/api/v2.1/search?entity_id=1&entity_type=city&q=${cuisine}&start=${start}&count=3`;
+		const apiUrl = `https://developers.zomato.com/api/v2.1/search?entity_id=1&entity_type=city&q=${cuisine}&count=10`;
 
 		request({
 			uri: apiUrl,

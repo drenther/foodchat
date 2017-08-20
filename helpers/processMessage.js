@@ -6,8 +6,21 @@ const FACEBOOK_ACCESS_TOKEN = process.env.FACEBOOK;
 const request = require('request');
 const apiAiClient = require('apiai')(API_AI_TOKEN);
 
+const random = () => {
+	const random = new Set();
+	random.add(0);
+	while (random.size < 4) {
+		const temp = ((min, max) => Math.floor(Math.random() * (max - min + 1)) + min )(0, 10);
+		random.add(temp);
+	}
+	return [...random];
+};
+
 const sendRestaurant = (senderId, res) => {
-	const restaurants = res.split('&end;').map(r => r.split('&gap;'));
+	const indexes = random();
+	const restaurants = res.split('&end;')
+		.filter((r, i) => indexes.includes(i))
+		.map(r => r.split('&gap;'));
 	const elements = restaurants.map(r => {
 		return {
 			title: r[0],
