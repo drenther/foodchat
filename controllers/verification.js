@@ -1,4 +1,4 @@
-request('dotenv').config({ path: 'variables.env' });
+require('dotenv').config({ path: 'variables.env' });
 module.exports = (req, res) => {
 	const hubChallenge = req.query['hub.challenge'];
 	const hubMode = req.query['hub.mode'];
